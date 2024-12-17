@@ -15,6 +15,7 @@ This is a Chess game project that uses Express and Socket.io for real-time gamep
 - Express
 - Socket.io
 - HTML/CSS/JavaScript
+- chess.js
 
 ## Installation
 
@@ -38,7 +39,6 @@ This is a Chess game project that uses Express and Socket.io for real-time gamep
     npm start
     ```
 2. Open your browser and navigate to `http://localhost:3000`.
-
 
 ## License
 
