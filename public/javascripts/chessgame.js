@@ -70,7 +70,7 @@ const renderBoard = () => {
         });
     });
 
-    if(playerRole === 'b'){
+    if (playerRole === 'b') {
         boardElement.classList.add('flipped');
     } else {
         boardElement.classList.remove('flipped');
@@ -89,12 +89,15 @@ const handleMove = (source, target) => {
 
 socket.on('playerRole', (role) => {
     playerRole = role;
+    const roleText = role === 'w' ? 'White Piece' : 'Black Piece';
+    document.querySelector('h3').innerHTML = `You are playing as ${roleText}`;
     renderBoard();
 
 });
 
 socket.on('spectatorRole', () => {
     playerRole = null;
+    document.querySelector('h3').innerHTML = `You are watching as a Spectator`;
     renderBoard();
 });
 

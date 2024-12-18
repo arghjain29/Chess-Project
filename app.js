@@ -17,8 +17,8 @@ let players = {};
 let currentPlayer = 'w';
 
 
-app.get('/', (req, res) => {
-    res.render('index');
+app.get('/', async (req, res) => {
+    res.render('index', {currPlayer: currentPlayer});
 });
 
 io.on('connection', (Usocket) => {
@@ -30,7 +30,7 @@ io.on('connection', (Usocket) => {
         players.black = Usocket.id;
         Usocket.emit('playerRole', 'b');
     } else {
-        Usocket.emit('spectator');
+        Usocket.emit('spectatorRole');
     }
 
     Usocket.on('disconnect', () => {
