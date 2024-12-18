@@ -17,7 +17,7 @@ let players = {};
 let currentPlayer = 'w';
 
 
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
     res.render('index');
 });
 
