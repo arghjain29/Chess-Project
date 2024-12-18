@@ -30,6 +30,7 @@
 
       .piece.black {
         color: #000000;
+        filter: drop-shadow(0 0 2px rgb(223, 218, 218));
       }
 
       .flipped {
@@ -69,14 +70,17 @@
   </head>
   <body>
     <div class="h-screen flex flex-col items-center justify-center bg-zinc-900">
+      <!-- Role or Status Message -->
       <div class="mb-20 flex items-center justify-center">
-        <h3 class="text-3xl font-semibold text-white">
-        </h3>
+        <h3 class="text-3xl font-semibold text-white">Connecting...</h3>
       </div>
     
-      <div class="chessboard w-96 h-96 grid grid-cols-8 grid-rows-8">
+      <!-- Chessboard (Hidden Until Ready) -->
+      <div class="chessboard w-96 h-96 grid grid-cols-8 grid-rows-8 hidden" id="chessboard">
+        <!-- The chessboard will be rendered dynamically -->
       </div>
     </div>
+    
     
 
     <script

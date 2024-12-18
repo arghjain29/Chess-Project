@@ -7,6 +7,11 @@ let draggedPiece = null;
 let sourceSquare = null;
 let playerRole = null;
 
+function updateRoleMessage(role) {
+    const roleText = role === 'w' ? 'White Piece' : 'Black Piece';
+    document.querySelector('h3').innerHTML = `You are playing as ${roleText}`;
+}
+
 const getPieceUnicode = (piece) => {
     const pieceMap = {
         p: '♟', r: '♜', n: '♞', b: '♝', q: '♛', k: '♚',
@@ -14,8 +19,6 @@ const getPieceUnicode = (piece) => {
     };
     return pieceMap[piece.type] || '';
 };
-
-
 
 const renderBoard = () => {
     const board = chess.board();
@@ -106,10 +109,30 @@ socket.on('boardState', (fen) => {
     renderBoard();
 });
 
+// Show waiting message
+socket.on('waitingForPlayer', () => {
+    document.querySelector('h3').innerHTML = `Waiting for another player to join...`;
+    const chessboard = document.getElementById('chessboard');
+    chessboard.classList.add('hidden');
+});
+
+// Start game when both players are ready
+socket.on('playersReady', () => {
+    if (playerRole) {
+        // Update the role message
+        updateRoleMessage(playerRole);
+    } else {
+        document.querySelector('h3').innerHTML = `Game is starting!`;
+    }
+    const chessboard = document.getElementById('chessboard');
+    chessboard.classList.remove('hidden');
+    renderBoard();
+});
+
 socket.on('move', (move) => {
     chess.move(move);
     renderBoard();
 });
 
-renderBoard();
+// renderBoard();
 
