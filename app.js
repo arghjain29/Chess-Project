@@ -5,12 +5,12 @@ const { Chess } = require('chess.js');
 const path = require('path');
 
 const app = express();
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
 //! important for Socket.io to work 
 const server = http.createServer(app);
 const io = socket(server);
-app.set('view engine', 'ejs');
-app.use(express.static(path.join(__dirname, 'public')));
 
 const chess = new Chess();
 let players = {};
