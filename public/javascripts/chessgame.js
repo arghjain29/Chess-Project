@@ -119,7 +119,6 @@ socket.on('waitingForPlayer', () => {
 // Start game when both players are ready
 socket.on('playersReady', () => {
     if (playerRole) {
-        // Update the role message
         updateRoleMessage(playerRole);
     } else {
         document.querySelector('h3').innerHTML = `Game is starting!`;
@@ -133,6 +132,4 @@ socket.on('move', (move) => {
     chess.move(move);
     renderBoard();
 });
-
-// renderBoard();
 
